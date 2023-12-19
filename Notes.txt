@@ -5,4 +5,59 @@ Create, Read, Update, Delete
 
 3. Rows: Individual data
 
-4. 
+4. Creating Tables :
+
+USE db_name;
+CREATE TABLE table_name (
+    column1_name datatype contraint,
+    column2_name datatype contraint,
+    column3_name datatype contraint,
+   ....
+);
+
+5. Datatypes:
+
+CHAR(50)      -> string(0-255)
+VARCHAR(50)   -> string(0-255)
+BLOB(1000)    -> string(0-65535)
+INT           -> integer(-2,147,483,648 to 2,147,483,647)
+TINYINT       -> integer(-128 to 127)
+BIGINT        -> integer(-9,223,372,036,854,775,808 to 9,223,372,036,775,807)
+BIT(2)        -> can store x-bit values. x can range from 1 to 64
+FLOAT         -> precision: 23
+DOUBLE        -> precision: 24-53
+BOOLEAN       -> Boolean values 0 or 1 (Not directly used in sql use tinyint)
+DATE          -> format: YYYY-MM-DD ranging 1000-01-01 to 9999-12-31
+YEAR          -> four digit format ranging from 1901 to 2155
+
+6. Signed (Both Postive and negaive values) and Unsigned (only one type of values all space goes to particular type of number)
+
+7. Types of Sql commands
+
+DDL (Data Definition Language): create, alter, rename, truncate & drop
+DQL (Data query language): select
+DML (Data manipulation Language): insert, update & delete
+DCL (Data control language): grant & revoke permission to users
+TCL (Transition control Language): start transaction, commit, rollback
+
+8. Databases related query
+
+CREATE DATABASE db_name;
+CREATE DATABASE IF NOT EXISTS db_name;
+
+DROP DATABASE db_name;
+DROP DATABASE IF EXISTS db_name;
+
+SHOW DATABASE;
+SHOW TABLES;
+
+9. Tables related query
+
+CREATE TABLE table_name (                     (give schema)
+    column1_name datatype contraint,
+    column2_name datatype contraint,
+    column3_name datatype contraint,
+   ....
+);
+
+10. 
