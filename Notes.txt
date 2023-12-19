@@ -1,0 +1,8 @@
+1. CRUD :
+Create, Read, Update, Delete
+
+2. Columns: structure, schema of database
+
+3. Rows: Individual data
+
+4. 
