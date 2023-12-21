@@ -24,3 +24,28 @@ SELECT * FROM student;
 SHOW TABLES;
 
 DROP DATABASE IF EXISTS company;
+
+DROP TABLE student;
+
+CREATE TABLE student (
+    rollno INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+
+SELECT * FROM student;
+
+INSERT INTO student
+(rollno, name)
+VALUES
+(1, "Manas"),
+(2, "Mayank"),
+(3, "Rahul");
+
+CREATE TABLE temp1 (
+    id INT UNIQUE
+);
+
+INSERT INTO temp1
+VALUES
+(101);
+INSERT INTO temp1 VALUES (101);

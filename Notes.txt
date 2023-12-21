@@ -19,7 +19,7 @@ CREATE TABLE table_name (
 
 CHAR(50)      -> string(0-255)
 VARCHAR(50)   -> string(0-255)
-BLOB(1000)    -> string(0-65535)
+BLOB(1000)    -> string(0-65535) (can be used to store images and vidoes)
 INT           -> integer(-2,147,483,648 to 2,147,483,647)
 TINYINT       -> integer(-128 to 127)
 BIGINT        -> integer(-9,223,372,036,854,775,808 to 9,223,372,036,775,807)
@@ -60,4 +60,75 @@ CREATE TABLE table_name (                     (give schema)
    ....
 );
 
-10. 
+10. Primary key is always not null
+
+11. DROP TABLE student;
+
+12. Insert into table
+
+INSERT INTO table_name
+(column1_name, column2_name)
+VALUES
+(col1_value1,col2_value1),
+(col1_value2,col2_value2);
+
+13. Keys in Databases
+
+a) Primary Key: It is a column (or a set of columns) in a table that uniqely identifies each row. (a unique id). There is only 1 PK & it should be not null.
+
+b) Foreign Key: A Foreign key is a column (or a set of columns) in a table that refers to the Primary key of another table. There can be multiple FKs. FKs can have duplicate and null values. 
+e.g: When it is nullable, consider exampl of a book where we don't want it to be related to a author, i.e. the author is anonymous.
+
+14. Images/Videos can be stored in BLOB data type,
+CREATE TABLE image_storage (
+    image_id INT PRIMARY KEY,
+    image_data BLOB
+);
+
+INSERT INTO image_storage (image_id, image_data)
+VALUES (1, LOAD_FILE('/path/to/your/image.jpg'));
+
+
+15. Contarints:
+
+NOT NULL: cannot have null value
+UNIQUE: all values in the column are different
+PRIMARY KEY: makes column unique and not null
+FOREIGN KEY: prevent actions that would destroy links between tables.
+DEFAULT: sets the default value
+CHECK: it can limit the values allowed in a column
+
+CREATE TABLE emp (
+    id INT ,
+    salary INT DEFAULT 25000
+);
+
+
+16. CREATE TABLE temp1 (
+    id INT,
+    name VARCHAR(50),
+    city VARCHAR(20),
+    PRIMARY KEY (id, name)
+);
+
+// Their combination will be null and unique
+
+17. CREATE TABLE temp (
+    cust_id INT,
+    FOREIGN KEY (cust_id) REFERENCES customer(id)
+);
+Customer is table and id is paramter
+
+18. CREATE TABLE city (
+    id INT PRIMARY KEY,
+    city VARCHAR(50),
+    age INT,
+    CONTRAINT age_check CHECK (age >= 18 AND city="Delhi")
+);
+
+CREATE TABLE newTab (
+    age INT CHECK (age >= 18)
+);
+
+19. SELECT col1, col2, ... FROM <table>;
+DISTICT keyword used to get distict data
