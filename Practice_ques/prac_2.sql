@@ -23,4 +23,7 @@ SELECT name, marks FROM student;
 -- SELECT DISTINCT city, marks FROM student;
 SELECT DISTINCT city FROM student;
 
+SELECT * FROM student WHERE marks > 80;
+SELECT * FROM student WHERE city = "Mumbai" AND marks > 80;
+
 

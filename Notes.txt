@@ -132,3 +132,87 @@ CREATE TABLE newTab (
 
 19. SELECT col1, col2, ... FROM <table>;
 DISTICT keyword used to get distict data
+
+20. Clauses: condition should be fullfilled 
+
+a) WHERE clause: To define some conditions
+
+SELECT * FROM student WHERE marks > 80;
+
+
+21. Operators: Using Operators in WHERE
+
+Arithmetic: +, -, *, /, % 
+Comparison: =, !=, >, >=, <, <=
+Logical: AND, OR, NOT, IN, BETWEEN, ALL, LIKE, ANY
+Bitwise: & (Bitwise AND), | (Bitwise OR)
+
+SELECT * FROM student WHERE marks > 80 AND marks < 90;
+SELECT * FROM student WHERE marks > 80 OR marks < 90;
+SELECT * FROM student WHERE NOT marks > 80;
+SELECT * FROM student WHERE city IN ("Delhi", "Mumbai", "Gurgaon"); // Can write cities which are not in database
+SELECT * FROM student WHERE marks BETWEEN 80 AND 90;
+SELECT * FROM student WHERE marks LIKE '8%';
+SELECT * FROM student WHERE marks LIKE '8_'; // _ is a single character wildcard
+ 
+b) LIMIT 
+
+SELECT * FROM student LIMIT 2; // Only 2 rows will be shown
+
+c) ORDER BY
+
+SELECT * FROM student ORDER BY marks ASC; // Ascending order
+SELECT * FROM student ORDER BY marks DESC; // Descending order
+
+d) GROUP BY
+
+SELECT city, COUNT(*) FROM student GROUP BY city; // Group by city and count the number of students in each city
+
+e) HAVING
+GROUP BY is used with aggregate functions like COUNT(), MAX() etc.
+HAVING is used with aggregate functions to filter the results.
+SELECT country, AVG(marks) AS avgMarks FROM student GROUP BY country HAVING AVG(marks) > 7
+
+f) JOIN
+JOIN is used to combine rows from two or more tables based on a related column between them.
+SELECT * FROM student JOIN city ON student.city = city.city_name;
+i) INNER JOIN: Returns records that have matching values in both tables
+ii) LEFT JOIN: Returns all records from the left table, and the matched records from the right table
+iii) RIGHT JOIN: Returns all records from the right table, and the matched records from the left table
+iv) FULL JOIN: Returns all records when there is a match in either left or right table
+v) CROSS JOIN: It returns the Cartesian product of two tables i.e., it combines each row of the first table with
+each row of the second table.
+
+32. Subqueries
+
+SELECT * FROM student WHERE marks > (SELECT AVG(marks) FROM student);
+Subquery can also be written as an IN clause:
+SELECT * FROM student WHERE marks > ALL (SELECT AVG(marks) FROM student);
+The EXISTS keyword returns TRUE if at least one record matches the subquery condition. It's often used for checking existence of data.
+SELECT * FROM student WHERE EXISTS (SELECT * FROM city WHERE student.city = city.city_name);
+
+33. Aggregate Functions: perform a calculation on a set of values, and return a single value
+
+a) COUNT ()
+b) MAX ()
+c) MIN ()
+d) SUM ()
+e) AVG ()
+
+
+
+34. String Functions
+
+LENGTH(): returns the length of string
+CONCAT(): concatenates two or more strings
+SUBSTRING(): extracts a substring from a string
+REPLACE(): replaces all occurrences of a substring within a string, with a new substring
+REVERSE(): reverses a string and returns the result
+UPPER(): converts a string to upper-case
+LOWER(): converts a string to lower-case
+TRIM(): removes all spaces from both sides of a string
+LTRIM(): removes all spaces from the left side of a string
+RTRIM(): removes all spaces from the right side of a string
+CHARINDEX(): finds the position of one string inside another string
+
+
