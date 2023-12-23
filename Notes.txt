@@ -197,15 +197,87 @@ e) HAVING: similar to where, applies some condition on rows. Used when we want t
 HAVING is used with aggregate functions to filter the results.
 SELECT country, AVG(marks) AS avgMarks FROM student GROUP BY country HAVING AVG(marks) > 7
 
-f) JOIN
-JOIN is used to combine rows from two or more tables based on a related column between them.
+f) JOIN: JOIN is used to combine rows from two or more tables based on a related column between them. Foreign key not compulsary.
+
 SELECT * FROM student JOIN city ON student.city = city.city_name;
+
 i) INNER JOIN: Returns records that have matching values in both tables
+
+SELECT column(s)
+FROM tableA
+INNER JOIN tableB
+ON tableA.column = tableB.column;
+
 ii) LEFT JOIN: Returns all records from the left table, and the matched records from the right table
+
+SELECT column(s)
+FROM tableA
+LEFT JOIN tableB
+ON tableA.column = tableB.column;
+
 iii) RIGHT JOIN: Returns all records from the right table, and the matched records from the left table
+
+SELECT column(s)
+FROM tableA
+RIGHT  JOIN tableB
+ON tableA.column = tableB.column;
+
 iv) FULL JOIN: Returns all records when there is a match in either left or right table
+
+SELECT column(s)
+FROM tableA
+LEFT JOIN tableB
+ON tableA.column = tableB.column
+UNION
+SELECT column(s)
+FROM tableA
+RIGHT  JOIN tableB
+ON tableA.column = tableB.column;
+
 v) CROSS JOIN: It returns the Cartesian product of two tables i.e., it combines each row of the first table with
 each row of the second table.
+
+vi) SELF JOIN: It is a regular join but the table is joined with itself
+
+
+SELECT column(s)
+FROM tableA as a
+JOIN tableB as b
+ON a.col_name = b.col_name;
+
+More: 
+
+left exclsuive join
+
+SELECT *
+FROM student AS a
+LEFT JOIN course AS b
+ON a.id = b.id
+WHERE b.id IS NULL;
+
+right exclusive join
+
+SELECT *
+FROM student AS a
+RIGHT JOIN course AS b
+ON a.id = b.id
+WHERE a.id IS NULL;
+
+full exclusive join
+
+SELECT *
+FROM student 
+LEFT JOIN courses
+ON student.id = course.id
+WHERE b.id is NULL
+UNION
+SELECT * 
+FROM student
+RIGHT JOIN courses
+ON student.id = course.id
+WHERE student.id is NULL;
+
+
 
 32. Subqueries
 
@@ -343,4 +415,6 @@ TRUNCATE TABLE table_name;
 - Drop deleted the table but truncate deleted only the data
 
 39. ON DELETE SET NULL: When we create a foreign key using this option, it sets the referencing column values to NULL when the reference row is deleted in the parent table which has a primary key.
+
+40. AS: A alias
 
