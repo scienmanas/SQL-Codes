@@ -154,6 +154,28 @@ SELECT * FROM student WHERE city IN ("Delhi", "Mumbai", "Gurgaon"); // Can write
 SELECT * FROM student WHERE marks BETWEEN 80 AND 90;
 SELECT * FROM student WHERE marks LIKE '8%';
 SELECT * FROM student WHERE marks LIKE '8_'; // _ is a single character wildcard
+
+    SELECT * FROM student WHERE marks LIKE '8%';
+
+    This query is retrieving all records from the "student" table where the "marks" column starts with the digit '8'. The % symbol is a wildcard character that matches any sequence of characters, so this query is looking for records where the "marks" column starts with '8' and can be followed by any number of characters.
+
+    For example, it would match records where "marks" is '80', '85', '800', '89', etc.
+
+    SELECT * FROM student WHERE marks LIKE '8_';
+
+    This query is retrieving all records from the "student" table where the "marks" column has '8' as the first character and is followed by any single character. The underscore _ is a wildcard character that matches any single character.
+
+    For example, it would match records where "marks" is '81', '82', '8A', '8%', etc., where the second character can be any single character.    SELECT * FROM student WHERE marks LIKE '8%';
+
+    This query is retrieving all records from the "student" table where the "marks" column starts with the digit '8'. The % symbol is a wildcard character that matches any sequence of characters, so this query is looking for records where the "marks" column starts with '8' and can be followed by any number of characters.
+
+    For example, it would match records where "marks" is '80', '85', '800', '89', etc.
+
+    SELECT * FROM student WHERE marks LIKE '8_';
+
+    This query is retrieving all records from the "student" table where the "marks" column has '8' as the first character and is followed by any single character. The underscore _ is a wildcard character that matches any single character.
+
+    For example, it would match records where "marks" is '81', '82', '8A', '8%', etc., where the second character can be any single character.
  
 b) LIMIT 
 
@@ -268,4 +290,57 @@ CREATE TABLE teacher (
 
 38. Cascading on Foreign key
 
-ON DELETE CASCADE: When we create a Foreign key using this option, it deletes the referencing rows in the child table when the referecne row is deleted 
+a) ON DELETE CASCADE: When we create a Foreign key using this option, it deletes the referencing rows in the child table when the referecne row is deleted in the parent table which has primary key. 
+
+b) ON UPDATE CASCADE: When we create a foreign key using UPDATE CASCADE the referencing rows are updated in the child table when the reference row is updated in the parent table which has a primary key.
+
+UPDATE dept
+SET id = 103
+WHERE id = 102;
+
+CREATE TABLE teacher (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES dept(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
+
+36. Table related queries[contd]
+
+c) ALTER: to change the schema
+
+ADD column
+
+ALTER TABLE table_name
+ADD COLUMN column_name data_type constraint;
+
+DROP column
+
+ALTER TABLE table_name
+DROP COLUMN column_name;
+
+RENAME Table
+
+ALTER TABLE table_name
+RENAME TO new_table_name
+
+Change Column (rename)
+
+ALTER TABLE table_name
+CHANGE COLUMN old_name new_name new_data_type constraint;
+
+MODIFY column (modify datatype/constraint)
+
+ALTER TABLE table_name
+MODIFY COLUMN column_name new_data_type constraint;
+
+d) TRUNCATE: to delete table's data
+
+TRUNCATE TABLE table_name;
+
+- Drop deleted the table but truncate deleted only the data
+
+39. ON DELETE SET NULL: When we create a foreign key using this option, it sets the referencing column values to NULL when the reference row is deleted in the parent table which has a primary key.
+
