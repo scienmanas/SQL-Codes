@@ -164,12 +164,14 @@ c) ORDER BY
 SELECT * FROM student ORDER BY marks ASC; // Ascending order
 SELECT * FROM student ORDER BY marks DESC; // Descending order
 
-d) GROUP BY
+d) GROUP BY: group rows that have the same value into summary rows. It collects data from multiple reocrds and groups the result by one or more column.
+
+GROUP BY is used with aggregate functions like COUNT(), MAX() etc.
 
 SELECT city, COUNT(*) FROM student GROUP BY city; // Group by city and count the number of students in each city
 
-e) HAVING
-GROUP BY is used with aggregate functions like COUNT(), MAX() etc.
+e) HAVING: similar to where, applies some condition on rows. Used when we want to apply any condition after grouping. 
+
 HAVING is used with aggregate functions to filter the results.
 SELECT country, AVG(marks) AS avgMarks FROM student GROUP BY country HAVING AVG(marks) > 7
 
@@ -199,8 +201,6 @@ c) MIN ()
 d) SUM ()
 e) AVG ()
 
-
-
 34. String Functions
 
 LENGTH(): returns the length of string
@@ -215,4 +215,57 @@ LTRIM(): removes all spaces from the left side of a string
 RTRIM(): removes all spaces from the right side of a string
 CHARINDEX(): finds the position of one string inside another string
 
+35. General Order
 
+SELECT column(s)
+FROM table_name
+WHERE condition
+GROUP columns(s)
+HAVING condition
+ORDER BY column(s) ASC;
+
+36. Table related queries
+
+a) UPDATE: to update existing rows
+
+UPDATE table_name
+SET col1 = val1, col2 = val2
+WHERE condition
+
+eg: 
+
+UPDATE student 
+SET grade = "O"
+WHERE grade = "A";
+
+b) DELETE: to delete existing rows
+
+DELETE FROM table_name
+WHERE condition
+
+e.g.:
+DELETE FROM student
+WHERE marks < 20
+
+37. Revisiting Foreign key
+
+-- DELETE FROM student
+-- All data will be deleted 
+
+CREATE TABLE dept (
+    id INt PRIMARY Key,
+    name VARCHAR(50)
+);    -> Parent table
+
+
+
+CREATE TABLE teacher (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES dept(id)
+);   -> Child table
+
+38. Cascading on Foreign key
+
+ON DELETE CASCADE: When we create a Foreign key using this option, it deletes the referencing rows in the child table when the referecne row is deleted 

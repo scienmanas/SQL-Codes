@@ -26,4 +26,37 @@ SELECT DISTINCT city FROM student;
 SELECT * FROM student WHERE marks > 80;
 SELECT * FROM student WHERE city = "Mumbai" AND marks > 80;
 
+SELECT COUNT(rollno) FROM student;
 
+SELECT city, COUNT(rollno)
+FROM student 
+GROUP By city;
+
+SELECT city, name, COUNT(rollno)
+FROM student 
+GROUP By city, name;
+
+SELECT city, name, COUNT(rollno)
+FROM student 
+GROUP By city;
+
+SELECT city, avg(marks)
+FROM student
+GROUP BY city
+ORDER BY avg(marks) DESC;
+
+-- SELECT mode, COUNT(customer_id)
+-- FROM table
+-- GROUP BY mode
+
+SELECT city, COUNT(rollno)
+FROM student
+GROUP BY city
+HAVING max(marks) > 90;
+
+SELECT city
+FROM student
+WHERE grade="A"
+GROUP By city
+HAVING MAX(marks) > 90
+ORDER By city ASC;
