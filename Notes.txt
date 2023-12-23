@@ -186,7 +186,7 @@ c) ORDER BY
 SELECT * FROM student ORDER BY marks ASC; // Ascending order
 SELECT * FROM student ORDER BY marks DESC; // Descending order
 
-d) GROUP BY: group rows that have the same value into summary rows. It collects data from multiple reocrds and groups the result by one or more column.
+d) GROUP BY: group rows that have the same value into summary rows. It collects data from multiple records and groups the result by one or more column.
 
 GROUP BY is used with aggregate functions like COUNT(), MAX() etc.
 
@@ -234,16 +234,24 @@ FROM tableA
 RIGHT  JOIN tableB
 ON tableA.column = tableB.column;
 
-v) CROSS JOIN: It returns the Cartesian product of two tables i.e., it combines each row of the first table with
-each row of the second table.
+v) CROSS JOIN: It returns the Cartesian product of two tables i.e., it combines each row of the first table with each row of the second table.
+
+The result set of a cross join is the total number of rows in the first table multiplied by the total number of rows in the second table.
+
+SELECT * 
+FROM table1
+CROSS JOIN table2;
+
 
 vi) SELF JOIN: It is a regular join but the table is joined with itself
+
 
 
 SELECT column(s)
 FROM tableA as a
 JOIN tableB as b
 ON a.col_name = b.col_name;
+
 
 More: 
 
@@ -276,8 +284,6 @@ FROM student
 RIGHT JOIN courses
 ON student.id = course.id
 WHERE student.id is NULL;
-
-
 
 32. Subqueries
 
@@ -417,4 +423,59 @@ TRUNCATE TABLE table_name;
 39. ON DELETE SET NULL: When we create a foreign key using this option, it sets the referencing column values to NULL when the reference row is deleted in the parent table which has a primary key.
 
 40. AS: A alias
+
+41. UNION: It is used to combine the result-set of two or more SELECT statements. Gives unique records.
+
+To use it: 
+
+a) Every SELECT should have same number of columns. 
+b) coloumn must have similar data Types.
+c) columns in every SELECT should be in same order.
+
+SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+
+42. UNION ALL: It is used to combine the result-set of two or more SELECT statements. Gives all records. Duplicates too.
+
+43. Subqueries: A subquery/inner query/nested query is a query within another SQL query. Can be written in SELECT, FROM, WHERE. WHERE being most popular.
+
+It involves 2 select statements.
+
+Syntax: 
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name OPERATOR
+(subquery);
+
+e.g. SELECT name, marks
+FROM student
+WHERE marks > (SELECT AVG(marks) FROM student);
+
+44. ANY: It is used to compare a value to any applicable value in the list according to the condition.
+
+Syntax:
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name OPERATOR ANY
+(subquery);
+
+e.g. SELECT name, marks
+FROM student
+WHERE marks > ANY (SELECT AVG(marks) FROM student);
+
+45. ALL: It is used to compare a value with all values in the subquery and returns TRUE if all rows satisfy the condition.
+
+Syntax:
+
+SELECT column_name(s)
+FROM table_name
+WHERE column_name OPERATOR ALL
+(subquery);
+
+e.g. SELECT name, marks
+FROM student
+WHERE marks > ALL (SELECT AVG(marks) FROM student);
 
