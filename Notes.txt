@@ -492,3 +492,38 @@ SELECT * FROM view1;
 DROP view1;
 
 - The created view are stored in view and does not affect the database tables
+
+47. OFFSET: Leave the rows 
+
+Syntax: 
+
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY some_column
+OFFSET n ROWS
+FETCH NEXT m ROWS ONLY;
+
+n: Number of rows to skip (offset).
+m: Number of rows to return.
+
+-- MySQL syntax
+
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY some_column
+LIMIT m OFFSET n;
+
+m: Number of rows to return.
+n: Number of rows to skip (offset).
+
+
+-- General Order: 
+
+SELECT column(s)
+FROM table_name
+WHERE condition
+GROUP columns(s)
+HAVING condition
+ORDER BY column(s) ASC
+LIMIT __ 
+OFFSET __
