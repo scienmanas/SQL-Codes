@@ -479,3 +479,16 @@ e.g. SELECT name, marks
 FROM student
 WHERE marks > ALL (SELECT AVG(marks) FROM student);
 
+46. MySQL Views: A view is a virtual table based on the result-set of an SQL statement.
+
+(Virtual tables) - Not reflected in real database
+
+CREATE VIEW view1 AS
+SELECT rollno, name
+FROM student;
+
+SELECT * FROM view1;
+
+DROP view1;
+
+- The created view are stored in view and does not affect the database tables
