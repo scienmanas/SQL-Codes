@@ -1,0 +1,6 @@
+1. To select distinct things:
+
+SELECT DISTINCT column_name 
+FROM table_name;
+
+2. 
